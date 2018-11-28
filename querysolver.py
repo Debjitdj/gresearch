@@ -14,7 +14,36 @@ class QuerySolver(object):
             num /= factor[arr[3]]
         return str(num) + " " + arr[3]
 
+    def check_expression(self, query):
+        arr = query.split(" ")
+
+        q = []
+        for e in arr:
+            q.append(e)
+
+        a = q[0]
+        b = q[2]
+        e = q[1]
+
+        operator = ["+", "-", "*", "/"]
+        check = (e in operator) and (type(a) == type(1)) and (type(b) == type(1))
+        return check
+
+    def eval_expression(self, query):
+        res = 0
+        if e == "+":
+            res = b + a
+        if e == "-":
+            res = b - a
+        if e == "*":
+            res = b * a
+        if e == "/":
+            res = b // a
+        return res
+
     def answer_query(self, query):
         if "in" in query:
             return self.unit_conversion(query)
+        if self.check_expression(query):
+            return self.eval_expression(query)
         return 85
