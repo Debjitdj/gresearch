@@ -40,7 +40,6 @@ class QuerySolver(object):
         if e == "*":
             res = a * b
         if e == "/":
-<<<<<<< HEAD
             res = b // a
         return res 
 
@@ -67,11 +66,6 @@ class QuerySolver(object):
         second = str(firstEval + arr[3] + arr[4])
         if self.check_expression(second):
             return self.eval_expression(second)
-
-=======
-            res = a // b
-        return res
->>>>>>> 380633381e0f17af859773a73a6363a7c2a056e5
 
     def is_expression(self, query):
         arr = query.split(" ")
