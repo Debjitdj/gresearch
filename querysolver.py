@@ -40,8 +40,38 @@ class QuerySolver(object):
         if e == "*":
             res = a * b
         if e == "/":
+<<<<<<< HEAD
+            res = b // a
+        return res 
+
+    def check2_expression(self, query):
+        arr = query.split(" ")
+        q = []
+        for e in arr:
+            q.append(e)
+        a = q[0]
+        b = q[2]
+        c = q[4]
+        e1 = q[1]
+        e2 = q[3]
+
+        operator = ["+", "-", "*", "/"]
+        check = (e1 in operator) and (e1 in operator) and a.isdigit() and b.isigit() and c.isdigit()
+        return check
+
+    def eval2_expression(self, query):
+        arr = query.split(" ")
+        first = arr[0] + arr[1] + arr[2]
+        if self.check_expression(first):
+            firstEval = self.eval_expression(first)
+        second = str(firstEval + arr[3] + arr[4])
+        if self.check_expression(second):
+            return self.eval_expression(second)
+
+=======
             res = a // b
         return res
+>>>>>>> 380633381e0f17af859773a73a6363a7c2a056e5
 
     def is_expression(self, query):
         arr = query.split(" ")
@@ -55,4 +85,6 @@ class QuerySolver(object):
             return self.unit_conversion(query)
         if self.check_expression(query):
             return self.eval_expression(query)
+        if self.check2_expression(query):
+            return self.eval2_expression(query)
         return 85
