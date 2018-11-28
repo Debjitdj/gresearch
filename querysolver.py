@@ -1,5 +1,8 @@
 import webhandler
 
+operator = ["+", "-", "*", "/"]
+brackets = ["(", ")"]
+
 class QuerySolver(object):
     def __init__(self):
         pass
@@ -19,14 +22,15 @@ class QuerySolver(object):
         a = arr[0]
         b = arr[2]
         e = arr[1]
-        operator = ["+", "-", "*", "/"]
+        
         check = (e in operator) and a.isdigit() and b.isdigit()
         return check
 
-    def eval_expression(self, query):
+    def eval_expression3(self, query):
         arr = query.split(" ")
         a = int(arr[0])
-        b = int(arr[2])
+        if arr[2] == "(":
+        b = " ".join(arr[3:]) if arr[2] == "(" else int(arr[2])
         e = arr[1]
         res = 0
         if e == "+":
@@ -38,6 +42,13 @@ class QuerySolver(object):
         if e == "/":
             res = a // b
         return res
+
+    def is_expression(self, query):
+        arr = query.split(" ")
+        return [e for e in arr if not (e.isdigit() or e in brackets or e in operator)] is False
+
+    def eval_expression(self, query):
+        
 
     def answer_query(self, query):
         if "in" in query:
