@@ -1,1 +1,4 @@
-__pycache__/**
+*.pc
+*.pyc
+*.pyo
+__pycache__
