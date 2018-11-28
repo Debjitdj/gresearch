@@ -16,28 +16,27 @@ class QuerySolver(object):
 
     def check_expression(self, query):
         arr = query.split(" ")
-
-        q = []
-        for e in arr:
-            q.append(e)
-
-        a = q[0]
-        b = q[2]
-        e = q[1]
-
+        a = arr[0]
+        b = arr[2]
+        e = arr[1]
         operator = ["+", "-", "*", "/"]
         check = (e in operator) and a.isdigit() and b.isdigit()
         return check
 
     def eval_expression(self, query):
+        arr = query.split(" ")
+        a = int(arr[0])
+        b = int(arr[2])
+        e = arr[1]
         res = 0
         if e == "+":
             res = b + a
         if e == "-":
-            res = b - a
+            res = a - b
         if e == "*":
-            res = b * a
+            res = a * b
         if e == "/":
+<<<<<<< HEAD
             res = b // a
         return res 
 
@@ -65,6 +64,10 @@ class QuerySolver(object):
         if self.check_expression(second):
             return self.eval_expression(second)
 
+=======
+            res = a // b
+        return res
+>>>>>>> 380633381e0f17af859773a73a6363a7c2a056e5
 
     def answer_query(self, query):
         if "in" in query:
