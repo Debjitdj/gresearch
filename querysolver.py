@@ -26,7 +26,7 @@ class QuerySolver(object):
         e = q[1]
 
         operator = ["+", "-", "*", "/"]
-        check = (e in operator) and (type(a) == type(1)) and (type(b) == type(1))
+        check = (e in operator) and a.isdigit() and b.isdigit()
         return check
 
     def eval_expression(self, query):
@@ -39,11 +39,38 @@ class QuerySolver(object):
             res = b * a
         if e == "/":
             res = b // a
-        return res
+        return res 
+
+    def check2_expression(self, query):
+        arr = query.split(" ")
+        q = []
+        for e in arr:
+            q.append(e)
+        a = q[0]
+        b = q[2]
+        c = q[4]
+        e1 = q[1]
+        e2 = q[3]
+
+        operator = ["+", "-", "*", "/"]
+        check = (e1 in operator) and (e1 in operator) and a.isdigit() and b.isigit() and c.isdigit()
+        return check
+
+    def eval2_expression(self, query):
+        arr = query.split(" ")
+        first = arr[0] + arr[1] + arr[2]
+        if self.check_expression(first):
+            firstEval = self.eval_expression(first)
+        second = str(firstEval + arr[3] + arr[4])
+        if self.check_expression(second):
+            return self.eval_expression(second)
+
 
     def answer_query(self, query):
         if "in" in query:
             return self.unit_conversion(query)
         if self.check_expression(query):
             return self.eval_expression(query)
+        if self.check2_expression(query):
+            return self.eval2_expression(query)
         return 85
